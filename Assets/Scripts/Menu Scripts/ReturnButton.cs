@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class ReturnButton : MonoBehaviour {
 
-    public Button returnBtn;
 	// Use this for initialization
 	void Start () {
 		

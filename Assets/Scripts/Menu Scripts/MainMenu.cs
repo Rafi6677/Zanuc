@@ -6,10 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-    public Button playBtn;
-    public Button testBtn;
-    public Button fb;
-
     void Start ()
     {
         
@@ -25,12 +21,14 @@ public class MainMenu : MonoBehaviour {
 
     public void playBtnClik()
     {
+        PlayerPrefs.SetInt("GameMode", 0);
         SceneManager.LoadScene("Preparation");
     }
 
-    public void testBtnClick()
+    public void challengeBtnClick()
     {
-        SceneManager.LoadScene("Test");
+        PlayerPrefs.SetInt("GameMode", 1);
+        SceneManager.LoadScene("Preparation");
     }
 
     public void infoBtnClick()
@@ -38,8 +36,8 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene("AboutGame");
     }
 
-    public void fbClick()
+    public void quitBtnClick()
     {
-        Application.OpenURL("https://www.facebook.com/profile.php?id=100005435405634");
+        Application.Quit();
     }
 }

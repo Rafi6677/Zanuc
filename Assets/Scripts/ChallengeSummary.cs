@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class ChallengeSummary : MonoBehaviour {
 
     public Text result;
-    private int goodAnswersQuantity;
 
     // Use this for initialization
     void Start()
     {
         //goodAnswersQuantity = PlayerStats.goodAnswerQuantity;
-        result.text = PlayerPrefs.GetInt("goodAnswersQuantity") + "/10";
+        result.text = PlayerPrefs.GetInt("goodAnswersQuantity") + "/" + PlayerPrefs.GetInt("wrongAnswersQuantity");
     }
 
     // Update is called once per frame

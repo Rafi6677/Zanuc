@@ -19,9 +19,32 @@ public class PreparationCounter : MonoBehaviour {
 	void Update ()
     {
         timer += Time.deltaTime;
-        if (timer >= 1.0f && timer < 2.0f) counter.text = "2...";
-        if (timer >= 2.0f && timer < 3.0f) counter.text = "1...";
-        if (timer > 3.0f) SceneManager.LoadScene("Game");
+        //countingSound.Play();
+        if(timer >= 0 && timer < 1.0)
+        {
+            //countingSound.Play();
+        }
+        if (timer >= 1.0 && timer < 2.0)
+        {
+            counter.text = "2...";
+            //countingSound.Stop();
+            //countingSound.Play();
+        }
+       
+        if (timer >= 2.0 && timer < 3.0)
+        {
+            counter.text = "1...";
+            //countingSound.Stop();
+            //countingSound.Play();
+        }
+        if (timer > 3.0)
+        {
+            //countingSound.Stop();
+            //endCountingSound.Play();
+            if (PlayerPrefs.GetInt("GameMode") == 0) SceneManager.LoadScene("Game");
+            else SceneManager.LoadScene("Challenge");
+
+        }
     }
     
 }

@@ -6,13 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu Scenes/GamersListPart2.unity
-    guid: 49f99d5dff7619846b08a359a991a27c
-  - enabled: 1
     path: Assets/Scenes/Menu Scenes/Intro.unity
     guid: 34ddb13680185984da4781e722bc6e7a
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Menu Scenes/MainMenu.unity
     guid: 969440b1d9e138b49847de47d7d9f39e
   - enabled: 1
     path: Assets/Scenes/Preparation.unity
@@ -23,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameSummary.unity
     guid: eed9f8d4c99e6514fb394a5a77693501
+  - enabled: 1
+    path: Assets/Scenes/Challenge.unity
+    guid: c109bc32f1461a04a9cc652165f3605d
+  - enabled: 1
+    path: Assets/Scenes/ChallengeSummary.unity
+    guid: 2df707643b8d2544f99f26e4e4e103c7
   - enabled: 1
     path: Assets/Scenes/Menu Scenes/AboutGame.unity
     guid: 9621e56ab58d18c4c9a5de366200d1ad

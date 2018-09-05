@@ -1,7 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -17,6 +14,8 @@ public class Game : MonoBehaviour
     public GameObject backgroundQuad;
     public GameObject goodAnswerQuad;
     public GameObject wrongAnswerQuad;
+    public AudioSource goodAnswerSound;
+    public AudioSource wrongAnswerSound;
 
     private float timer;
     private int actualSongNumber;
@@ -25,6 +24,9 @@ public class Game : MonoBehaviour
 
     private bool readyToChangeSong;
     private bool wasGoodAnswer;
+    private bool wasWrongAnswer;
+    private bool nextSong;
+    private bool ableToPlaySound;
 
     private string[] songs;
     private int[] songNumbers;
@@ -36,16 +38,9 @@ public class Game : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        timer = 0;
-        actualSongNumber = 0;
-        songQuantity = 0;
-        goodAnswersQuantity = 0;
-        readyToChangeSong = false;
-        wasGoodAnswer = false;
+        setDefaults();
 
-        setUI(true, false, false);
-
-        TextAsset file = (TextAsset)Resources.Load("Iza");
+        TextAsset file = (TextAsset)Resources.Load("SongList");
         songList = System.Text.Encoding.Default.GetString(file.bytes);
  
         char breakPoint = '\n';
@@ -60,7 +55,6 @@ public class Game : MonoBehaviour
         {
             indexArr[i] = i;
         }
-
         
         for (int i=0;i<songNumbers.Length;i++)
         {
@@ -74,7 +68,7 @@ public class Game : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 0 && timer < 0.05)
+        if (nextSong)
         {
             StopAllCoroutines();
             if (actualSongNumber >= songNumbers.Length)
@@ -88,6 +82,7 @@ public class Game : MonoBehaviour
                 string[] songCut = song.Split('-');
                 artistGUI.text = songCut[0];
                 titleGUI.text = songCut[1];
+                nextSong = false;
             }
         }
 
@@ -101,11 +96,16 @@ public class Game : MonoBehaviour
             StartCoroutine(wrongAnswerAction());
         }
 
-        if (angleZ > 0.9 || angleZ < -0.9)
+        if ((angleZ > 0.9 || angleZ < -0.9) && !wasWrongAnswer)
         {
             setUI(false, true, false);
             wasGoodAnswer = true;
             readyToChangeSong = true;
+            if(ableToPlaySound)
+            {
+                goodAnswerSound.Play();
+                ableToPlaySound = false;
+            }
         }
 
         if (((angleZ <= 0.9 && angleZ >= 0.3) || (angleZ <= -0.3 && angleZ >= -0.9)) && wasGoodAnswer)
@@ -116,7 +116,9 @@ public class Game : MonoBehaviour
         if (angleZ < 0.3 && angleZ > -0.3 && wasGoodAnswer)
         {
             wasGoodAnswer = false;
+            ableToPlaySound = true;
             timer = 0;
+            nextSong = true;
             goodAnswersQuantity++;
             setUI(true, false, false);
             if (readyToChangeSong)
@@ -126,12 +128,28 @@ public class Game : MonoBehaviour
             }
         }
 
-        if(Input.GetMouseButton(0) && (angleZ < 0.5 && angleZ > -0.5))
+        if(Input.GetMouseButton(0) && (angleZ < 0.5 && angleZ > -0.5) && !wasWrongAnswer && !wasWrongAnswer)
         {
             StartCoroutine(wrongAnswerAction());
         }
     }
 
+
+
+
+    public void setDefaults()
+    {
+        timer = 0;
+        actualSongNumber = 0;
+        songQuantity = 0;
+        goodAnswersQuantity = 0;
+        readyToChangeSong = false;
+        wasGoodAnswer = false;
+        wasWrongAnswer = false;
+        nextSong = true;
+        ableToPlaySound = true;
+        setUI(true, false, false);
+    }
 
     static void swap(ref int a, ref int b)
     {
@@ -142,12 +160,17 @@ public class Game : MonoBehaviour
 
     IEnumerator wrongAnswerAction()
     {
+        wasWrongAnswer = true;
+        wasGoodAnswer = false;
         setUI(false, false, true);
+        wrongAnswerSound.Play();
         yield return new WaitForSeconds(1.5f);
         setUI(true, false, false);
         readyToChangeSong = true;
         actualSongNumber++;
         timer = 0;
+        nextSong = true;
+        wasWrongAnswer = false;
     }
 
     private void setUI(bool gameUI, bool goodAnswerUI, bool wrongAnswerUI)

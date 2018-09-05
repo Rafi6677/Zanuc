@@ -66,13 +66,12 @@
     <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\Scripts\GameSummary.cs" />
     <Compile Include="Assets\Scripts\GameUIManager.cs" />
-    <Compile Include="Assets\Scripts\Menu Scripts\GamersListPart1.cs" />
-    <Compile Include="Assets\Scripts\Menu Scripts\GamersListPart2.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\AboutMenu.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\Intro.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\PreparationCounter.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\ReturnButton.cs" />
-    <None Include="Assets\Resources\Iza.txt" />
+    <Compile Include="Assets\Scripts\PlayerPrefs\PlayerPrefsX.cs" />
     <None Include="Assets\Resources\SongList.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Projekty/Unity Games/Zanuć/Zanuć/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
