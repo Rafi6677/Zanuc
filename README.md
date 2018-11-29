@@ -1,4 +1,4 @@
-# Project Name
+# Zanuć
 > A 2D game created on mobile devices with Android system. It is similar game to popular “Czółko”. One of the players takes the smartphone and turns it around. Other players see the screen on which the title and the artist of the song is shown. Their task is to croon the song without using words so the player holding the smartphone can guess the title.
 
 ## Table of contents
