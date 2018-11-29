@@ -27,9 +27,12 @@ Game has two play modes:
 Go to 'Built' folder and download the .apk file. Copy it to your mobile device with android system and run the file so the instalation begins.
 
 ## Features
-List of features
+List of features:
 * Rotating device up or down means good answer
 * Touching the screen means wrong answer
+
+To do:
+* Move list of songs from .txt file to database
 
 ## Status
 Project is: finished
